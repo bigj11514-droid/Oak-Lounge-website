@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oak Lounge</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <div class="logo">
+          <span>Oak</span>
+        </div>
+        <div>
+          <h1>Oak Lounge</h1>
+          <p>Refined evenings, crafted experiences.</p>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <a href="#about">About</a>
+        <a href="#menu">Menu</a>
+        <a href="#order">Order</a>
+        <a href="#events">Events</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">Welcome to Oak Lounge</span>
+          <h2>
+            An intimate lounge for cocktails, conversation, and live nights.
+          </h2>
+          <p>
+            Join us for signature drinks, elevated bites, and a warm atmosphere
+            designed for unforgettable evenings.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Book a Table</a>
+            <a class="btn btn-secondary" href="#menu">View Menu</a>
+          </div>
+        </div>
+        <div class="hero-image"></div>
+      </section>
+
+      <section id="about" class="section section-about">
+        <div class="container-grid">
+          <div>
+            <h3>Oak Lounge Experience</h3>
+            <p>
+              Oak Lounge blends modern design with timeless comfort. Whether
+              you’re here for a crafted cocktail, an intimate gathering, or a
+              weekend night out, our lounge offers a serene luxury experience.
+            </p>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <strong>Craft Cocktails</strong>
+              <span>Handmade with premium spirits</span>
+            </div>
+            <div class="stat-card">
+              <strong>Private Nooks</strong>
+              <span>Cozy seating for small groups</span>
+            </div>
+            <div class="stat-card">
+              <strong>Live Nights</strong>
+              <span>Music, DJ sets, and curated entertainment</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="menu" class="section section-menu">
+        <h3>Signature Menu</h3>
+        <div class="menu-grid">
+          <article class="menu-item">
+            <h4>Oak Old Fashioned</h4>
+            <p>Bourbon, house bitters, candied orange, smoked cherry.</p>
+          </article>
+          <article class="menu-item">
+            <h4>Velvet Negroni</h4>
+            <p>Gin, vermouth, amaro, fresh citrus.</p>
+          </article>
+          <article class="menu-item">
+            <h4>Charcuterie Share</h4>
+            <p>Artisan cheese, cured meats, olives, seasonal accoutrements.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="order" class="section section-order">
+        <div class="order-card">
+          <h3>Order Your Favorites</h3>
+          <p>
+            Choose the food or drink you want, select a size, set quantity, and
+            send your order directly to WhatsApp.
+          </p>
+          <div class="order-selection-grid">
+            <div class="order-preview">
+              <img
+                id="orderPreviewImage"
+                src="https://images.unsplash.com/photo-1541544182037-9e7420e2d0df?auto=format&fit=crop&w=900&q=80"
+                alt="Oak Old Fashioned"
+              />
+              <div class="order-preview-copy">
+                <h4 id="orderPreviewTitle">Oak Old Fashioned</h4>
+                <p id="orderPreviewDescription">
+                  Bourbon, house bitters, candied orange, smoked cherry.
+                </p>
+                <div class="order-preview-price">Starting at $14</div>
+              </div>
+            </div>
+            <form id="orderForm">
+              <div class="form-row">
+                <label for="orderItem">Select item</label>
+                <select id="orderItem" name="orderItem">
+                  <option
+                    value="Oak Old Fashioned"
+                    data-price="14"
+                    data-image="https://images.unsplash.com/photo-1541544182037-9e7420e2d0df?auto=format&fit=crop&w=900&q=80"
+                    data-description="Bourbon, house bitters, candied orange, smoked cherry."
+                  >
+                    Oak Old Fashioned — $14
+                  </option>
+                  <option
+                    value="Velvet Negroni"
+                    data-price="13"
+                    data-image="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=900&q=80"
+                    data-description="Gin, vermouth, amaro, fresh citrus."
+                  >
+                    Velvet Negroni — $13
+                  </option>
+                  <option
+                    value="Charcuterie Share"
+                    data-price="18"
+                    data-image="https://images.unsplash.com/photo-1555992336-03a23c0c1d95?auto=format&fit=crop&w=900&q=80"
+                    data-description="Artisan cheese, cured meats, olives, seasonal accoutrements."
+                  >
+                    Charcuterie Share — $18
+                  </option>
+                </select>
+              </div>
+              <div class="form-row">
+                <label for="orderSize">Size</label>
+                <select id="orderSize" name="orderSize">
+                  <option value="Regular" data-multiplier="1">Regular</option>
+                  <option value="Large" data-multiplier="1.4">
+                    Large (+40%)
+                  </option>
+                  <option value="Share" data-multiplier="1.8">
+                    Share (+80%)
+                  </option>
+                </select>
+              </div>
+              <div class="form-row">
+                <label for="orderQuantity">Quantity</label>
+                <input
+                  id="orderQuantity"
+                  name="orderQuantity"
+                  type="number"
+                  min="1"
+                  value="1"
+                />
+              </div>
+              <div class="order-summary">
+                <span>Total:</span>
+                <strong id="orderTotal">$14.00</strong>
+              </div>
+              <button type="button" id="whatsappButton" class="btn btn-primary">
+                Send Order by WhatsApp
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section id="events" class="section section-events">
+        <div class="container-grid">
+          <div>
+            <h3>Upcoming Evenings</h3>
+            <p>
+              Enjoy live music every Friday and Saturday, plus tasting nights
+              and private lounge gatherings.
+            </p>
+          </div>
+          <div class="event-list">
+            <div class="event-card">
+              <strong>Friday Live Jazz</strong>
+              <span>8PM - 11PM</span>
+            </div>
+            <div class="event-card">
+              <strong>Saturday DJ Lounge</strong>
+              <span>9PM - midnight</span>
+            </div>
+            <div class="event-card">
+              <strong>Sunday Brunch Cocktails</strong>
+              <span>11AM - 2PM</span>
+            </div>
+            <div class="event-card">
+              <strong>Monday Martini Hour</strong>
+              <span>6PM - 8PM</span>
+            </div>
+            <div class="event-card">
+              <strong>Wednesday Wine Tasting</strong>
+              <span>7PM - 9PM</span>
+            </div>
+            <div class="event-card">
+              <strong>Thursday Open Mic</strong>
+              <span>8PM - 10PM</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery" class="section section-gallery">
+        <h3>See What Guests Love</h3>
+        <div class="gallery-grid">
+          <article class="gallery-card">
+            <img
+              src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=900&q=80"
+              alt="Guests enjoying drinks at Oak Lounge"
+            />
+            <p>
+              Enjoy evenings in our cozy seating and warm lounge atmosphere.
+            </p>
+          </article>
+          <article class="gallery-card">
+            <img
+              src="https://images.unsplash.com/photo-1510626176961-4b52f34259c8?auto=format&fit=crop&w=900&q=80"
+              alt="Cocktail service at Oak Lounge"
+            />
+            <p>Signature cocktails crafted for every taste and celebration.</p>
+          </article>
+          <article class="gallery-card">
+            <img
+              src="https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=900&q=80"
+              alt="Relaxed lounge guests"
+            />
+            <p>
+              Guests come for the music, conversation, and memorable nights.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="section section-contact">
+        <div class="contact-card">
+          <h3>Reserve Your Evening</h3>
+          <p>
+            Oak Lounge is open nightly for reservations and walk-ins. Reach out
+            to reserve your table or inquire about private events.
+          </p>
+          <div class="contact-details">
+            <div>
+              <strong>Address</strong>
+              <p>123 Oak Street, City Center</p>
+            </div>
+            <div>
+              <strong>Hours</strong>
+              <p>Tue-Sat: 5PM - 1AM</p>
+            </div>
+            <div>
+              <strong>Phone</strong>
+              <p>(123) 456-7890</p>
+            </div>
+          </div>
+          <a class="btn btn-primary" href="mailto:hello@oaktlounge.com"
+            >Email Us</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Oak Lounge · Crafted for memorable nights.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
