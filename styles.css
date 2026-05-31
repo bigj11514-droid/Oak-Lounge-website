@@ -406,4 +406,8 @@ img {
   .btn {
     width: 100%;
   }
+  .gallery-grid{
+    display: flex;
+    flex-direction: column;
+  }
 }
