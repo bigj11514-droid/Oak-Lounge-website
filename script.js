@@ -49,7 +49,7 @@ function buildOrderMessage() {
   const quantity = orderQuantity.value;
   const total = orderTotal.textContent;
 
-  return `Hello Oak Lounge, I would like to order ${quantity} x ${size} ${item}. Total: ${total}. Please confirm availability.`;
+  return `Hello Perissos Lounge, I would like to order ${quantity} x ${size} ${item}. Total: ${total}. Please confirm availability.`;
 }
 
 whatsappButton.addEventListener('click', () => {
