@@ -35,6 +35,17 @@ const reservationGuests = document.getElementById('reservationGuests');
 const checkAvailabilityButton = document.getElementById('checkAvailabilityButton');
 const tableCount = document.getElementById('tableCount');
 const reservationFeedback = document.getElementById('reservationFeedback');
+const eventPostForm = document.getElementById('eventPostForm');
+const eventTitle = document.getElementById('eventTitle');
+const eventType = document.getElementById('eventType');
+const eventDate = document.getElementById('eventDate');
+const eventTime = document.getElementById('eventTime');
+const eventPrice = document.getElementById('eventPrice');
+const eventDescription = document.getElementById('eventDescription');
+const eventList = document.getElementById('eventList');
+const enableNotificationsButton = document.getElementById('enableNotificationsButton');
+const notificationButtons = document.querySelectorAll('.notif-button');
+const notificationStatusText = document.getElementById('notificationStatus');
 const whatsappPhone = '1234567890';
 
 const menuData = [
@@ -86,6 +97,75 @@ const menuData = [
 ];
 
 let cartItems = [];
+
+const eventData = [
+  {
+    id: 'friday-live-band',
+    type: 'Live band night',
+    title: 'Friday Live Band',
+    date: '2026-07-11',
+    time: '9:00 PM',
+    description: 'Enjoy a live band night with cocktails and smooth jazz.',
+    price: 20,
+    available: true,
+    ticketsAvailable: 20,
+  },
+  {
+    id: 'saturday-dj-lounge',
+    type: 'DJ',
+    title: 'Saturday DJ Lounge',
+    date: '2026-07-12',
+    time: '9:00 PM',
+    description: 'Dance all night with our resident DJ and signature drinks.',
+    price: 15,
+    available: true,
+    ticketsAvailable: 25,
+  },
+  {
+    id: 'karaoke-night',
+    type: 'Karaoke',
+    title: 'Karaoke Night',
+    date: '2026-07-15',
+    time: '8:00 PM',
+    description: 'Sing along with friends and enjoy happy hour specials.',
+    price: 0,
+    available: true,
+    ticketsAvailable: 0,
+  },
+  {
+    id: 'football-screening',
+    type: 'Football screening',
+    title: 'Weekend Football Screening',
+    date: '2026-07-18',
+    time: '6:00 PM',
+    description: 'Catch the game on big screens with food and drink packages.',
+    price: 10,
+    available: true,
+    ticketsAvailable: 30,
+  },
+  {
+    id: 'birthday-package',
+    type: 'Birthday package',
+    title: 'Birthday Celebration',
+    date: '2026-07-22',
+    time: '7:00 PM',
+    description: 'Celebrate with a private table package and dessert platter.',
+    price: 0,
+    available: true,
+    ticketsAvailable: 0,
+  },
+  {
+    id: 'special-promo',
+    type: 'Promotion',
+    title: 'Happy Hour Promo',
+    date: '2026-07-20',
+    time: '5:00 PM',
+    description: 'Special promotion: 2-for-1 cocktails from 5PM to 7PM.',
+    price: 0,
+    available: true,
+    ticketsAvailable: 0,
+  },
+];
 
 function formatCurrency(value) {
   return `$${value.toFixed(2)}`;
@@ -244,6 +324,132 @@ function buildCartOrderMessage() {
   return `Hello Oak Lounge, I would like to place a cart order: ${items}. Total: $${totalAmount.toFixed(2)}. Payment: ${payment}. Please confirm order and pick-up details.`;
 }
 
+function renderEvents() {
+  eventList.innerHTML = '';
+
+  eventData.forEach((event) => {
+    const card = document.createElement('article');
+    card.className = 'event-card';
+    const ticketInfo = event.price > 0 ? `Ticket ${event.price}gh` : 'Free RSVP';
+    const availableText = event.available ? 'Open' : 'Sold Out';
+    const actions = event.available
+      ? `<button type="button" class="btn btn-secondary event-rsvp-button" data-id="${event.id}">RSVP</button>
+         ${event.price > 0 ? `<button type="button" class="btn btn-primary event-ticket-button" data-id="${event.id}">Buy Ticket</button>` : ''}`
+      : '<span class="menu-status out-of-stock">Sold Out</span>';
+
+    card.innerHTML = `
+      <div class="event-card-top">
+        <strong>${event.title}</strong>
+        <span>${event.date} · ${event.time}</span>
+      </div>
+      <p>${event.description}</p>
+      <div class="event-meta">
+        <span>${event.type}</span>
+        <span>${ticketInfo}</span>
+        <span>${availableText}</span>
+      </div>
+      <div class="event-actions">
+        ${actions}
+      </div>
+    `;
+
+    eventList.appendChild(card);
+  });
+}
+
+function postNewEvent(event) {
+  event.preventDefault();
+
+  const newEvent = {
+    id: `event-${Date.now()}`,
+    type: eventType.value,
+    title: eventTitle.value,
+    date: eventDate.value,
+    time: eventTime.value,
+    description: eventDescription.value,
+    price: Number(eventPrice.value || 0),
+    available: true,
+    ticketsAvailable: Number(eventPrice.value) > 0 ? 50 : 0,
+  };
+
+  eventData.unshift(newEvent);
+  renderEvents();
+  if (Notification.permission === 'granted') {
+    sendNotification('new-event');
+  }
+  eventPostForm.reset();
+}
+
+function requestNotificationPermission() {
+  if (!('Notification' in window)) {
+    notificationStatusText.textContent = 'Notifications are not supported in this browser.';
+    return;
+  }
+
+  Notification.requestPermission().then((permission) => {
+    notificationStatusText.textContent = `Notification permission: ${permission}`;
+  });
+}
+
+function sendNotification(type) {
+  if (Notification.permission !== 'granted') {
+    notificationStatusText.textContent = 'Please enable notifications first.';
+    return;
+  }
+
+  const map = {
+    'new-event': {
+      title: 'New Event Posted',
+      body: 'Check out the latest live band night at Oak Lounge.',
+    },
+    promotion: {
+      title: 'Special Promotion',
+      body: 'Enjoy our latest happy hour and promotions at Oak Lounge.',
+    },
+    'happy-hour': {
+      title: 'Happy Hour Alert',
+      body: 'Happy hour starts soon. Grab your favorite cocktails for less.',
+    },
+    'menu-update': {
+      title: 'New Menu Item',
+      body: 'A new dish has arrived on our digital menu. Take a look.',
+    },
+    'reservation-reminder': {
+      title: 'Reservation Reminder',
+      body: 'Don’t forget your upcoming reservation at Oak Lounge.',
+    },
+  };
+
+  const payload = map[type];
+  if (!payload) return;
+
+  new Notification(payload.title, {
+    body: payload.body,
+    icon: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=100&q=80',
+  });
+}
+
+function handleEventAction(event) {
+  const rsvpButton = event.target.closest('.event-rsvp-button');
+  const ticketButton = event.target.closest('.event-ticket-button');
+
+  if (rsvpButton) {
+    const eventId = rsvpButton.dataset.id;
+    const eventItem = eventData.find((item) => item.id === eventId);
+    if (eventItem) {
+      alert(`RSVP confirmed for ${eventItem.title}. See you there!`);
+    }
+  }
+
+  if (ticketButton) {
+    const eventId = ticketButton.dataset.id;
+    const eventItem = eventData.find((item) => item.id === eventId);
+    if (eventItem) {
+      alert(`Ticket purchase confirmed for ${eventItem.title}.`);
+    }
+  }
+}
+
 function formatReservationDate(dateString) {
   const date = new Date(dateString);
   return date.toLocaleDateString(undefined, {
@@ -328,6 +534,19 @@ placeCartOrderButton.addEventListener('click', () => {
   window.open(url, '_blank');
 });
 
+eventPostForm.addEventListener('submit', postNewEvent);
+
+eventList.addEventListener('click', handleEventAction);
+
+enableNotificationsButton.addEventListener('click', requestNotificationPermission);
+
+notificationButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const noteType = button.dataset.note;
+    sendNotification(noteType);
+  });
+});
+
 [orderItem, orderSize, orderQuantity].forEach((input) => {
   input.addEventListener('change', () => {
     updateOrderTotal();
@@ -337,5 +556,6 @@ placeCartOrderButton.addEventListener('click', () => {
 
 renderMenuItems();
 updateCartDisplay();
+renderEvents();
 updateOrderTotal();
 updatePreview();
