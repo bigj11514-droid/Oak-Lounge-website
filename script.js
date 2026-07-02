@@ -20,6 +20,14 @@ const previewImage = document.getElementById('orderPreviewImage');
 const previewTitle = document.getElementById('orderPreviewTitle');
 const previewDescription = document.getElementById('orderPreviewDescription');
 const previewPrice = document.querySelector('.order-preview-price');
+const reservationForm = document.getElementById('reservationForm');
+const reservationName = document.getElementById('reservationName');
+const reservationDate = document.getElementById('reservationDate');
+const reservationTime = document.getElementById('reservationTime');
+const reservationGuests = document.getElementById('reservationGuests');
+const checkAvailabilityButton = document.getElementById('checkAvailabilityButton');
+const tableCount = document.getElementById('tableCount');
+const reservationFeedback = document.getElementById('reservationFeedback');
 const whatsappPhone = '1234567890';
 
 function formatCurrency(value) {
@@ -49,8 +57,58 @@ function buildOrderMessage() {
   const quantity = orderQuantity.value;
   const total = orderTotal.textContent;
 
-  return `Hello Perissos Lounge, I would like to order ${quantity} x ${size} ${item}. Total: ${total}. Please confirm availability.`;
+  return `Hello Oak Lounge, I would like to order ${quantity} x ${size} ${item}. Total: ${total}. Please confirm availability.`;
 }
+
+function formatReservationDate(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString(undefined, {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+
+function showReservationStatus(message, type = 'success') {
+  reservationFeedback.textContent = message;
+  reservationFeedback.className = type;
+}
+
+function getAvailableTables() {
+  const guests = Number(reservationGuests.value || 1);
+  const base = 5;
+  const reserved = Math.max(0, Math.ceil((guests - 2) / 2));
+  return Math.max(0, base - reserved);
+}
+
+checkAvailabilityButton.addEventListener('click', () => {
+  const available = getAvailableTables();
+  tableCount.textContent = `Tables available: ${available}`;
+  showReservationStatus(`Select your preferred date and time, then book online.`, 'success');
+});
+
+reservationForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const name = reservationName.value.trim();
+  const date = reservationDate.value;
+  const time = reservationTime.value;
+  const guests = reservationGuests.value;
+  const available = getAvailableTables();
+
+  if (!name || !date || !time || !guests) {
+    showReservationStatus('Please complete every field before booking.', 'error');
+    return;
+  }
+
+  if (available === 0) {
+    showReservationStatus('No tables are available at this time. Please choose another slot.', 'error');
+    return;
+  }
+
+  showReservationStatus(`Confirmed! ${name}, your table for ${guests} at ${formatReservationDate(date)} ${time} is reserved.`, 'success');
+});
 
 whatsappButton.addEventListener('click', () => {
   updateOrderTotal();

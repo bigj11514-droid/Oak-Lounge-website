@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Perissos Lounge</title>
+    <title>Oak Lounge</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="site-header">
       <div class="brand">
         <div class="logo">
-          <span>Peri</span>
+          <span>Oak</span>
         </div>
         <div>
-          <h1>Perissos Lounge</h1>
+          <h1>Oak Lounge</h1>
           <p>Refined evenings, crafted experiences.</p>
         </div>
       </div>
@@ -22,6 +22,7 @@
         <a href="#menu">Menu</a>
         <a href="#order">Order</a>
         <a href="#events">Events</a>
+        <a href="#reserve">Reserve</a>
         <a href="#gallery">Gallery</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -30,7 +31,7 @@
     <main>
       <section class="hero">
         <div class="hero-copy">
-          <span class="eyebrow">Welcome to Perissos Lounge</span>
+          <span class="eyebrow">Welcome to Oak Lounge</span>
           <h2>
             An intimate lounge for cocktails, conversation, and live nights.
           </h2>
@@ -39,7 +40,7 @@
             designed for unforgettable evenings.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#contact">Book a Table</a>
+            <a class="btn btn-primary" href="#reserve">Book a Table</a>
             <a class="btn btn-secondary" href="#menu">View Menu</a>
           </div>
         </div>
@@ -49,9 +50,9 @@
       <section id="about" class="section section-about">
         <div class="container-grid">
           <div>
-            <h3>Perissos Lounge Experience</h3>
+            <h3>Oak Lounge Experience</h3>
             <p>
-              Perissos Lounge blends modern design with timeless comfort. Whether
+              Oak Lounge blends modern design with timeless comfort. Whether
               you’re here for a crafted cocktail, an intimate gathering, or a
               weekend night out, our lounge offers a serene luxury experience.
             </p>
@@ -106,7 +107,7 @@
                 alt="fried chips"
               />
               <div class="order-preview-copy">
-                <h4 id="orderPreviewTitle"> Old Fashioned</h4>
+                <h4 id="orderPreviewTitle">Old Fashioned</h4>
                 <p id="orderPreviewDescription">
                   Bourbon, house bitters, candied orange, smoked cherry.
                 </p>
@@ -139,7 +140,7 @@
                     data-image="indome.jpg"
                     data-description="Indomie , cured meats, olives, seasonal accoutrements."
                   >
-                    spicy indomie  — 38gh
+                    spicy indomie — 38gh
                   </option>
                 </select>
               </div>
@@ -215,6 +216,74 @@
         </div>
       </section>
 
+      <section id="reserve" class="section section-reserve">
+        <div class="order-card reservation-card">
+          <h3>Reserve Your Table</h3>
+          <p>
+            View available tables, choose your date and time, and receive a
+            confirmation instantly.
+          </p>
+          <form id="reservationForm">
+            <div class="form-row">
+              <label for="reservationName">Name</label>
+              <input
+                id="reservationName"
+                name="reservationName"
+                type="text"
+                placeholder="Your name"
+                required
+              />
+            </div>
+            <div class="form-row">
+              <label for="reservationDate">Date</label>
+              <input
+                id="reservationDate"
+                name="reservationDate"
+                type="date"
+                required
+              />
+            </div>
+            <div class="form-row">
+              <label for="reservationTime">Time</label>
+              <select id="reservationTime" name="reservationTime" required>
+                <option value="18:00">6:00 PM</option>
+                <option value="19:00">7:00 PM</option>
+                <option value="20:00">8:00 PM</option>
+                <option value="21:00">9:00 PM</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="reservationGuests">Guests</label>
+              <input
+                id="reservationGuests"
+                name="reservationGuests"
+                type="number"
+                min="1"
+                max="10"
+                value="2"
+                required
+              />
+            </div>
+            <div class="form-row inline-row">
+              <button
+                type="button"
+                id="checkAvailabilityButton"
+                class="btn btn-secondary"
+              >
+                View Available Tables
+              </button>
+              <button type="submit" class="btn btn-primary">
+                Book Table Online
+              </button>
+            </div>
+            <div class="reservation-status">
+              <p id="tableCount">Tables available: 5</p>
+              <p id="reservationFeedback"></p>
+            </div>
+          </form>
+        </div>
+      </section>
+
       <section id="gallery" class="section section-gallery">
         <h3>See What Guests Love</h3>
         <div class="gallery-grid">
@@ -250,7 +319,7 @@
         <div class="contact-card">
           <h3>Reserve Your Evening</h3>
           <p>
-            Perissos Lounge is open nightly for reservations and walk-ins. Reach out
+            Oak Lounge is open nightly for reservations and walk-ins. Reach out
             to reserve your table or inquire about private events.
           </p>
           <div class="contact-details">
@@ -275,7 +344,7 @@
     </main>
 
     <footer class="site-footer">
-      <p>Perissos Lounge · Crafted for memorable nights.</p>
+      <p>Oak Lounge · Crafted for memorable nights.</p>
     </footer>
 
     <script src="script.js"></script>

@@ -238,6 +238,60 @@ img {
   margin-top: 1.5rem;
 }
 
+.reservation-card {
+  max-width: 720px;
+}
+
+.reservation-card .form-row {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.reservation-card label {
+  color: #d1d7df;
+  font-weight: 600;
+}
+
+.reservation-card input,
+.reservation-card select {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-size: 1rem;
+}
+
+.inline-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: center;
+}
+
+.reservation-status {
+  margin-top: 1rem;
+  padding: 1.3rem 1.2rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.reservation-status p {
+  margin: 0.35rem 0;
+  color: #c7cfd8;
+}
+
+.reservation-status .success {
+  color: #8fd19e;
+}
+
+.reservation-status .error {
+  color: #f08b9a;
+}
+
 .order-preview {
   border-radius: 28px;
   overflow: hidden;
