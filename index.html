@@ -75,105 +75,168 @@
       </section>
 
       <section id="menu" class="section section-menu">
-        <h3>Signature Menu</h3>
-        <div class="menu-grid">
-          <article class="menu-item">
-            <h4>Fried chips</h4>
-            <p>chinese Yam, sliced piece meat, onions, seasoned pepper.</p>
-          </article>
-          <article class="menu-item">
-            <h4>Velvet Negroni</h4>
-            <p>Gin, vermouth, amaro, fresh citrus.</p>
-          </article>
-          <article class="menu-item">
-            <h4>Charcuterie Share</h4>
-            <p>Indomie, cured meats, olives, seasonal accoutrements.</p>
-          </article>
+        <h3>Digital Menu</h3>
+        <p>
+          Browse our food and drinks menu with prices, pictures, search, filter,
+          and live availability status.
+        </p>
+        <div class="menu-controls">
+          <div class="form-row">
+            <label for="menuSearch">Search</label>
+            <input
+              id="menuSearch"
+              type="search"
+              placeholder="Search food or drinks"
+            />
+          </div>
+          <div class="form-row">
+            <label for="menuFilter">Filter</label>
+            <select id="menuFilter">
+              <option value="all">All</option>
+              <option value="food">Food</option>
+              <option value="drinks">Drinks</option>
+              <option value="available">Available</option>
+              <option value="outofstock">Out of Stock</option>
+            </select>
+          </div>
+        </div>
+        <div id="menuItems" class="menu-grid"></div>
+        <div id="menuEmpty" class="menu-empty" style="display: none">
+          No menu items match your search. Try a different keyword or filter.
         </div>
       </section>
 
       <section id="order" class="section section-order">
         <div class="order-card">
-          <h3>Order Your Favorites</h3>
+          <h3>Online Ordering</h3>
           <p>
-            Choose the food or drink you want, select a size, set quantity, and
-            send your order directly to WhatsApp.
+            Order food before arriving or while seated by scanning the QR code.
+            Choose to pay online or at the lounge.
           </p>
           <div class="order-selection-grid">
             <div class="order-preview">
               <img
                 id="orderPreviewImage"
-                src="WhatsApp Image 2026-05-31 at 6.42.39 PM.jpeg"
-                alt="fried chips"
+                src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80"
+                alt="order preview"
               />
               <div class="order-preview-copy">
                 <h4 id="orderPreviewTitle">Old Fashioned</h4>
                 <p id="orderPreviewDescription">
                   Bourbon, house bitters, candied orange, smoked cherry.
                 </p>
-                <div class="order-preview-price">Starting at 50gh</div>
+                <div class="order-preview-price">Starting at $50</div>
               </div>
             </div>
-            <form id="orderForm">
-              <div class="form-row">
-                <label for="orderItem">Select item</label>
-                <select id="orderItem" name="orderItem">
-                  <option
-                    value="Fride chips"
-                    data-price="50"
-                    data-image="WhatsApp Image 2026-05-31 at 6.42.39 PM.jpeg"
-                    data-description="chinese Yam, sliced piece meat, onions, seasoned pepper."
+            <div class="order-form-wrapper">
+              <form id="orderForm">
+                <div class="form-row">
+                  <label for="orderItem">Select item</label>
+                  <select id="orderItem" name="orderItem">
+                    <option
+                      value="Fried Chips"
+                      data-price="50"
+                      data-image="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80"
+                      data-description="Chinese Yam, sliced piece meat, onions, seasoned pepper."
+                    >
+                      Fried Chips — 50gh
+                    </option>
+                    <option
+                      value="Velvet Negroni"
+                      data-price="55"
+                      data-image="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=900&q=80"
+                      data-description="Gin, vermouth, amaro, fresh citrus."
+                    >
+                      Velvet Negroni — 55gh
+                    </option>
+                    <option
+                      value="Spicy Indomie"
+                      data-price="38"
+                      data-image="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=80"
+                      data-description="Indomie, cured meats, olives, seasonal accoutrements."
+                    >
+                      Spicy Indomie — 38gh
+                    </option>
+                  </select>
+                </div>
+                <div class="form-row">
+                  <label for="orderSize">Size</label>
+                  <select id="orderSize" name="orderSize">
+                    <option value="Regular" data-multiplier="1">Regular</option>
+                    <option value="Large" data-multiplier="1.4">
+                      Large (+40%)
+                    </option>
+                    <option value="Share" data-multiplier="1.8">
+                      Share (+80%)
+                    </option>
+                  </select>
+                </div>
+                <div class="form-row">
+                  <label for="orderQuantity">Quantity</label>
+                  <input
+                    id="orderQuantity"
+                    name="orderQuantity"
+                    type="number"
+                    min="1"
+                    value="1"
+                  />
+                </div>
+                <div class="form-row payment-methods">
+                  <legend>Payment option</legend>
+                  <label
+                    ><input
+                      type="radio"
+                      name="paymentMethod"
+                      value="Pay online"
+                      checked
+                    />
+                    Pay online</label
                   >
-                    Fried Chips — 50gh
-                  </option>
-                  <option
-                    value="Velvet Negroni"
-                    data-price="55"
-                    data-image="Velvet Negroni.webp"
-                    data-description="Gin, vermouth, amaro, fresh citrus."
+                  <label
+                    ><input
+                      type="radio"
+                      name="paymentMethod"
+                      value="Pay at lounge"
+                    />
+                    Pay at lounge</label
                   >
-                    Velvet Negroni — 55gh
-                  </option>
-                  <option
-                    value="spicy indomie"
-                    data-price="38"
-                    data-image="indome.jpg"
-                    data-description="Indomie , cured meats, olives, seasonal accoutrements."
-                  >
-                    spicy indomie — 38gh
-                  </option>
-                </select>
-              </div>
-              <div class="form-row">
-                <label for="orderSize">Size</label>
-                <select id="orderSize" name="orderSize">
-                  <option value="Regular" data-multiplier="1">Regular</option>
-                  <option value="Large" data-multiplier="1.4">
-                    Large (+40%)
-                  </option>
-                  <option value="Share" data-multiplier="1.8">
-                    Share (+80%)
-                  </option>
-                </select>
-              </div>
-              <div class="form-row">
-                <label for="orderQuantity">Quantity</label>
-                <input
-                  id="orderQuantity"
-                  name="orderQuantity"
-                  type="number"
-                  min="1"
-                  value="1"
-                />
-              </div>
-              <div class="order-summary">
-                <span>Total:</span>
-                <strong id="orderTotal">$14.00</strong>
-              </div>
-              <button type="button" id="whatsappButton" class="btn btn-primary">
-                Send Order by WhatsApp
-              </button>
-            </form>
+                </div>
+                <div class="order-summary">
+                  <span>Total:</span>
+                  <strong id="orderTotal">$14.00</strong>
+                </div>
+                <button
+                  type="button"
+                  id="whatsappButton"
+                  class="btn btn-primary"
+                >
+                  Send Order by WhatsApp
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="order-cart">
+            <h4>Your Cart</h4>
+            <div id="cartList" class="cart-list">
+              <p class="menu-empty">
+                Your cart is empty. Add items from the Digital Menu.
+              </p>
+            </div>
+            <div class="order-summary">
+              <span>Cart total:</span>
+              <strong id="cartTotal">$0.00</strong>
+            </div>
+            <button
+              type="button"
+              id="placeCartOrderButton"
+              class="btn btn-primary"
+            >
+              Place Cart Order
+            </button>
+            <p class="cart-helper">
+              Add items from the Digital Menu to order before arriving or while
+              seated.
+            </p>
           </div>
         </div>
       </section>
