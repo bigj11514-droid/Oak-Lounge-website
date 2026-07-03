@@ -246,8 +246,9 @@
           <div>
             <h3>Upcoming Evenings</h3>
             <p>
-              Enjoy live band nights, DJs, karaoke, football screenings, birthday
-              packages, and special promotions. Customers can RSVP or buy tickets.
+              Enjoy live band nights, DJs, karaoke, football screenings,
+              birthday packages, and special promotions. Customers can RSVP or
+              buy tickets.
             </p>
             <div class="notification-card">
               <h4>Customer Notifications</h4>
@@ -263,11 +264,41 @@
                 Enable Notifications
               </button>
               <div class="notification-actions">
-                <button type="button" class="btn btn-secondary notif-button" data-note="new-event">New Event</button>
-                <button type="button" class="btn btn-secondary notif-button" data-note="promotion">Promotion</button>
-                <button type="button" class="btn btn-secondary notif-button" data-note="happy-hour">Happy Hour</button>
-                <button type="button" class="btn btn-secondary notif-button" data-note="menu-update">Menu Update</button>
-                <button type="button" class="btn btn-secondary notif-button" data-note="reservation-reminder">Reservation Reminder</button>
+                <button
+                  type="button"
+                  class="btn btn-secondary notif-button"
+                  data-note="new-event"
+                >
+                  New Event
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary notif-button"
+                  data-note="promotion"
+                >
+                  Promotion
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary notif-button"
+                  data-note="happy-hour"
+                >
+                  Happy Hour
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary notif-button"
+                  data-note="menu-update"
+                >
+                  Menu Update
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary notif-button"
+                  data-note="reservation-reminder"
+                >
+                  Reservation Reminder
+                </button>
               </div>
               <p id="notificationStatus" class="notification-status-text"></p>
             </div>
@@ -278,7 +309,12 @@
               <form id="eventPostForm">
                 <div class="form-row">
                   <label for="eventTitle">Event title</label>
-                  <input id="eventTitle" type="text" placeholder="Live band night" required />
+                  <input
+                    id="eventTitle"
+                    type="text"
+                    placeholder="Live band night"
+                    required
+                  />
                 </div>
                 <div class="form-row">
                   <label for="eventType">Type</label>
@@ -286,7 +322,9 @@
                     <option value="Live band night">Live band night</option>
                     <option value="DJ">DJ</option>
                     <option value="Karaoke">Karaoke</option>
-                    <option value="Football screening">Football screening</option>
+                    <option value="Football screening">
+                      Football screening
+                    </option>
                     <option value="Birthday package">Birthday package</option>
                     <option value="Promotion">Promotion</option>
                   </select>
@@ -307,9 +345,15 @@
                 </div>
                 <div class="form-row">
                   <label for="eventDescription">Description</label>
-                  <textarea id="eventDescription" rows="3" placeholder="Event details"></textarea>
+                  <textarea
+                    id="eventDescription"
+                    rows="3"
+                    placeholder="Event details"
+                  ></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Post Event</button>
+                <button type="submit" class="btn btn-primary">
+                  Post Event
+                </button>
               </form>
             </div>
             <div id="eventList" class="event-list"></div>
